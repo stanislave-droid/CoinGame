@@ -8,6 +8,11 @@ let player, coins = [], coinCounter = 0;
 let score = 0, best = 0;
 let timeLeft = 30;        // секунд
 const COIN_COUNT = 5;
+let sound;
+
+function preload(){
+  sound = loadSound('soundOfCoinGrab.mp3');
+}
 
 function setup() {
   createCanvas(720, 420);
@@ -167,6 +172,7 @@ function collectCoinsIfAny() {
     if (dist(player.x, player.y, c.x, c.y) < player.r + c.r) {
       score++;
       coinCounter++;
+      sound.play();
       coins[i] = spawnCoinSafe(); // нова монета
     }
   }
